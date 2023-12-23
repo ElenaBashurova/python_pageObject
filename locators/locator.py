@@ -9,6 +9,7 @@ class Locators_Page:
     birthday_btn = '#dateOfBirthInput'
     birthday_month = '.react-datepicker__month-select'
     birthday_year = '.react-datepicker__year-select'
+    birthday_day = '.react-datepicker__day--0'
     subject = '#subjectsInput'
     hobbies = '[for=hobbies-checkbox-2]'
     picture = '#uploadPicture'
@@ -17,6 +18,7 @@ class Locators_Page:
     city = '#react-select-4-input'
     submit_btn = '#submit'
     should_text = '.modal-header'
+    form = 'tbody tr td:last-child'
     close = '.modal-footer'
 
 
