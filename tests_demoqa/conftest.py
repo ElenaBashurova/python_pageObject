@@ -14,14 +14,13 @@ def load_env():
     load_dotenv()
 @pytest.fixture(scope='function')
 def setup_browser(request):
-    browser_version = request.config.getoption('--browser_version')
     browser.config.window_width = 1920
     browser.config.window_height = 1080
     browser.config.base_url = 'https://demoqa.com'
     options = Options()
     selenoid_capabilities = {
         "browserName": 'chrome',
-        "browserVersion": browser_version,
+        "browserVersion": 100.0,
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
