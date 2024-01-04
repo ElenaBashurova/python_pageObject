@@ -7,6 +7,10 @@ import os
 from dotenv import load_dotenv
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        '--browser_version',
+        default='100.0')
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -17,6 +21,8 @@ def setup_browser(request):
     browser.config.window_width = 1920
     browser.config.window_height = 1080
     browser.config.base_url = 'https://demoqa.com'
+    browser_version = request.config.getoption('--browser_version')
+    browser_version = browser_version if browser_version != "" else 100.0
     options = Options()
     selenoid_capabilities = {
         "browserName": 'chrome',
