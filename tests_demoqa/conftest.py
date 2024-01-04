@@ -25,7 +25,7 @@ def setup_browser():
     #     options=options
     # )
     
-    browser.config.driver = driver
+    # browser.config.driver = driver
 
     yield
 
