@@ -7,11 +7,6 @@ import os
 from dotenv import load_dotenv
 
 
-def pytest_addoption(parser):
-    parser.addoption(
-        '--browser_version',
-        default='100.0')
-
 
 @pytest.fixture(scope='session', autouse=True)
 def load_env():
@@ -21,23 +16,18 @@ def setup_browser(request):
     browser.config.window_width = 1920
     browser.config.window_height = 1080
     browser.config.base_url = 'https://demoqa.com'
-    browser_version = request.config.getoption('--browser_version')
-    browser_version = browser_version if browser_version != "" else 100.0
     options = Options()
     selenoid_capabilities = {
-        "browserName": 'chrome',
-        "browserVersion": browser_version,
+        "browserName": "chrome",
+        "browserVersion": "100.0",
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
         }
     }
     options.capabilities.update(selenoid_capabilities)
-
-    login = os.getenv('LOGIN')
-    password = os.getenv('PASSWORD')
     driver = webdriver.Remote(
-        command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
+        command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options
     )
 
