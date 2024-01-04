@@ -22,8 +22,6 @@ def test_student_registration(setup_browser):
         page.fill_address('city Moscow, street Lenina')
         page.fill_city('Haryana','Karnal')
         page.submit_btn()
-
-#Проверка данных
     with allure.step('Проверяем текст'):
         page.should_text(name='Romanov Ivan',
                      email='romanov.i@mail.com',
