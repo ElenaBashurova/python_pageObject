@@ -1,8 +1,6 @@
 from pages.registration_page import PageRegistration
 from resources_path.resources import resources_picture
 import allure
-from selene import browser
-
 
 
 def test_student_registration(setup_browser):
@@ -24,7 +22,8 @@ def test_student_registration(setup_browser):
         page.fill_address('city Moscow, street Lenina')
         page.fill_city('Haryana','Karnal')
         page.submit_btn()
-    browser.quit(5)
+
+#Проверка данных
     with allure.step('Проверяем текст'):
         page.should_text(name='Romanov Ivan',
                      email='romanov.i@mail.com',
