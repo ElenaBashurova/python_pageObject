@@ -2,7 +2,7 @@ from pages.registration_page import PageRegistration
 from resources_path.resources import resources_picture
 
 
-def test_student_registration(browser_management):
+def test_student_registration(setup_browser):
     page = PageRegistration()
     page.open_browser()
 
