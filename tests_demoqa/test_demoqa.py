@@ -11,6 +11,8 @@ import allure
 @allure.link("https://demoqa.com", name="Test_steps")
 @allure.story("Проверить текст")
 def test_student_registration(setup_browser):
+    browser = setup_browser
+
     with allure.step('Открываем страницу и проверяем текст'):
         page = PageRegistration()
         page.open_browser()
