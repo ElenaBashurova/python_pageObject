@@ -14,14 +14,10 @@ def pytest_addoption(parser):
         default='100.0'
     )
 
-@pytest.fixture(scope='session')
-def selenoid_browser(request):
-    return request.config.getoption('--browser_version')
-
-
 @pytest.fixture(scope='session', autouse=True)
 def load_env():
     load_dotenv()
+
 @pytest.fixture(scope='function')
 def setup_browser(browser_version):
     browser.config.window_width = 1080
@@ -30,7 +26,7 @@ def setup_browser(browser_version):
     options = Options()
     selenoid_capabilities = {
         "browserName": 'chrome',
-        "browserVersion": browser_version,
+        "browserVersion": '100.0',
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
