@@ -10,29 +10,27 @@ from dotenv import load_dotenv
 
 def pytest_addoption(parser):
     parser.addoption(
-        '--browser',
-        help='Браузер в котором будут запущены тесты',
-        choices=['firefox', 'chrome'],
-        default='chrome'
+        '--browser_version',
+        default='100.0'
     )
 
 @pytest.fixture(scope='session')
 def selenoid_browser(request):
-    return request.config.getoption('--browser')
+    return request.config.getoption('--browser_version')
 
 
 @pytest.fixture(scope='session', autouse=True)
 def load_env():
     load_dotenv()
 @pytest.fixture(scope='function')
-def setup_browser(selenoid_browser):
+def setup_browser(browser_version):
     browser.config.window_width = 1080
     browser.config.window_height = 1920
     browser.config.base_url = 'https://demoqa.com'
     options = Options()
     selenoid_capabilities = {
-        "browserName": selenoid_browser,
-        "browserVersion": "100.0",
+        "browserName": 'chrome',
+        "browserVersion": browser_version,
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
