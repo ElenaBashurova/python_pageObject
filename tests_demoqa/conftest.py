@@ -8,18 +8,12 @@ from dotenv import load_dotenv
 
 
 
-def pytest_addoption(parser):
-    parser.addoption(
-        '--browser_version',
-        default='100.0'
-    )
-
 @pytest.fixture(scope='session', autouse=True)
 def load_env():
     load_dotenv()
 
 @pytest.fixture(scope='function')
-def setup_browser(browser_version):
+def setup_browser():
     browser.config.window_width = 1080
     browser.config.window_height = 1920
     browser.config.base_url = 'https://demoqa.com'
